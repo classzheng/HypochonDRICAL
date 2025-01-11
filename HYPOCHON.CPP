@@ -1,0 +1,59 @@
+/*******************************************************
+ * @project:   HypochonDRICAL                          *
+ * @author:    classzheng: github.com                  *
+ * @brief:     A REAL-LIFE SANDBOX SIMULATE            *
+ * @date:      2025/1/06                               *
+ * @basemodel: SCP-079 OldAI                           *
+ * @releaseud: MIT License Y                         *
+ *******************************************************/
+#include "Hypochon.h"
+void main(void) {
+	int gd=DETECT, gm, idx=0, task=0;
+	COLORS panel[] = {BLACK, WHITE, LIGHTGRAY, DARKGRAY};
+	forest oneo_world (0);
+
+	char*path=(char*)malloc(sizeof(char)*256);
+	puts("Enter the BGI driver path:");
+	gets(path);
+	initgraph(&gd,&gm,path);
+	free(path);
+
+	plant pl1, pl2;
+	pl2.move2xyz(0,0,0);
+	for(idx=0; idx<100; idx++) {
+		oneo_world.render();
+		setcolor(BLUE);
+		line(0,240,639,240); // Dead-line
+		line(320,240,639,479);
+		line(0,479,320,240);
+		if(idx<30) pl1.move2xyz(0, 0, 9);
+		else       pl1.move2xyz(90-idx,90-idx,2);
+		pl1.render();
+		pl2.move2xyz((idx-30), (idx), abs(60-idx-32)),
+		pl2.render();
+		delay(100);
+	}
+	getch();
+/*	minitnow(), mhidenow();
+	simularender(5, 5, panel), flush_dialogue();
+
+	for(idx=0; idx<7; idx++) {
+		mhidenow();
+		if(idx==3) oneo_world.render(),	simularender(0, 0, panel);
+		flush_dialogue();
+		goahead(quotes[idx].qt, quotes[idx].dly, quotes[idx].tsk);
+		mshownow();
+		if(quotes[idx].tsk) {
+			continue;
+		}
+		if(getch()==27) break;
+	}
+	mhidenow();
+	oneo_world.render();
+	simularender(5, 5, panel);
+	flush_dialogue();
+	goahead("Forest Render test",20,0);
+	getch();
+	closegraph();*/
+	return ;
+}
